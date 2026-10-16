@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -35,7 +35,7 @@ android {
     }
 }
 
-fun kapt(string: String) {
+fun ksp(string: String) {
     TODO("Not yet implemented")
 }
 
@@ -52,7 +52,7 @@ dependencies {
     // Room
     implementation("androidx.room:room-runtime:2.8.5")
     implementation("androidx.room:room-ktx:2.8.5")
-    kapt("androidx.room:room-compiler:2.8.5")
+    ksp("androidx.room:room-compiler:2.8.5")
 
     // Сторонние библиотеки
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
