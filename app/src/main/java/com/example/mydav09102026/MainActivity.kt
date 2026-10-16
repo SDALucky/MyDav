@@ -8,8 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
+
+    //private lateinit var db: AppDatabase
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,5 +32,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, OptionsActivity::class.java)
             startActivity(intent)
         }
+        // Настраиваем RecyclerView
+        val rw: RecyclerView = findViewById<RecyclerView>(R.id.rw)
+        rw.layoutManager = LinearLayoutManager(this)
+
+        //adapter = RecordA
     }
 }

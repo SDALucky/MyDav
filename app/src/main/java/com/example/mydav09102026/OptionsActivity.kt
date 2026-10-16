@@ -22,13 +22,11 @@ class OptionsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // Создаём кнопки
         val btnset: Button = findViewById<Button>(R.id.buttonsettings)
         val btnacc: Button = findViewById<Button>(R.id.buttonaccount)
         val btnheart: Button = findViewById<Button>(R.id.buttonheart)
-
-        // Настраиваем RecyclerView
-        val rw: RecyclerView = findViewById<RecyclerView>(R.id.rw)
-        rw.layoutManager = LinearLayoutManager(this)
 
         btnset.setOnClickListener {
             val intent: Intent = Intent(this, SettingsActivity::class.java)
