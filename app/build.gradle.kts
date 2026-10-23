@@ -1,18 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.ksp)
 }
 
 android {
-    namespace = "com.example.mydav09102026"
-    compileSdk {
-        version = release(37)
-    }
+    namespace = "com.example.mydav09102026" // Проверьте, чтобы тут был ваш настоящий пакет проекта
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.mydav09102026"
+        applicationId = "com.example.mydav09102026" // И здесь тоже ваш пакет
         minSdk = 24
-        targetSdk = 37
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -21,45 +20,33 @@ android {
 
     buildTypes {
         release {
-            optimization {
-                enable = false
-            }
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
-    buildFeatures {
-        viewBinding = true
+    kotlinOptions {
+        jvmTarget = "21"
     }
 }
-
-fun ksp(string: String) {
-    TODO("Not yet implemented")
-}
-
-
 
 dependencies {
-    implementation(libs.androidx.activity.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
+    // Подключение библиотек строго по вашему каталогу libs.versions.toml
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
-    implementation(libs.material) // или libs.google.android.material в зависимости от вашего каталога
 
-    // Room
-    implementation("androidx.room:room-runtime:2.8.5")
-    implementation("androidx.room:room-ktx:2.8.5")
-    ksp("androidx.room:room-compiler:2.8.5")
-
-    // Сторонние библиотеки
-    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
-    implementation("com.google.android.material:1.11.0")
-
-    // Тестирование
+    // Тесты
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
